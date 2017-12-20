@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreCqrsRedis.API.Query.Controllers
 {
+    [Route("order")]
     public class OrderController : Controller
     {
         private readonly IOrderRespository _orderRespository;

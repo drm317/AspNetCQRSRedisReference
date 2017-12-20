@@ -7,7 +7,7 @@ namespace AspNetCoreCqrsRedis.API.Query.Repository
 {
     public class OrderRepository : BaseRepository, IOrderRespository
     {
-        public OrderRepository(IConnectionMultiplexer redisConnection) : base(redisConnection, "order")
+        public OrderRepository() : base("order")
         {
         }
 

@@ -8,12 +8,11 @@ namespace AspNetCoreCqrsRedis.API.Query.Repository
 {
     public class BaseRepository
     {
-        private readonly IConnectionMultiplexer _redisConnection;
+        private readonly IConnectionMultiplexer _redisConnection = ConnectionMultiplexer.Connect("localhost");
         private readonly string _namespace;
 
-        protected BaseRepository(IConnectionMultiplexer redis, string nameSpace)
+        protected BaseRepository(string nameSpace)
         {
-            _redisConnection = redis;
             _namespace = nameSpace;
         }
         
