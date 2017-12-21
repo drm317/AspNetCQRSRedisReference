@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreCqrsRedis.API.Query.Controllers
 {
-    [Route("order")]
+    [Route("api/[controller]")]
     public class OrderController : Controller
     {
         private readonly IOrderRespository _orderRespository;
@@ -13,8 +13,7 @@ namespace AspNetCoreCqrsRedis.API.Query.Controllers
             _orderRespository = orderRespository;
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetByOrderId(int orderId)
         {
             var order = _orderRespository.GetByID(orderId);
@@ -26,8 +25,7 @@ namespace AspNetCoreCqrsRedis.API.Query.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        [Route("all")]
+        [HttpGet("{id}")]
         public IActionResult GetAll()
         {
             var orders = _orderRespository.GetAll();

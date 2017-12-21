@@ -1,4 +1,4 @@
-﻿using System.Data.Common;
+﻿using System;
 
 namespace AspNetCoreCqrsRedis.API.Query.Domain
 {
@@ -7,5 +7,7 @@ namespace AspNetCoreCqrsRedis.API.Query.Domain
         public string OrderId { get; set; }
 
         public string Description { get; set; }
+        
+        public Guid AggregateId { get; set; }
     }
 }
