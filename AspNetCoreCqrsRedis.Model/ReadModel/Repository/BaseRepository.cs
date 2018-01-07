@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
 using StackExchange.Redis;
+using Newtonsoft.Json;
 
-namespace AspNetCoreCqrsRedis.API.Query.Repository
+namespace AspNetCoreCqrsRedis.Model.ReadModel.Repository
 {
     public class BaseRepository
     {
         private readonly IConnectionMultiplexer _redisConnection = ConnectionMultiplexer.Connect("localhost");
-        private readonly string _namespace;
 
-        protected BaseRepository(string nameSpace)
-        {
-            _namespace = nameSpace;
-        }
-        
-        public T Get<T>(int id)
+        public T Get<T>(Guid id)
         {
             return Get<T>(id.ToString());
         }
@@ -26,18 +19,28 @@ namespace AspNetCoreCqrsRedis.API.Query.Repository
             var key = MakeKey(keySuffix);
             var database = _redisConnection.GetDatabase();
             var serializedObject = database.StringGet(key);
-            if (serializedObject.IsNullOrEmpty) throw new ArgumentNullException(); 
+            if (serializedObject.IsNullOrEmpty) throw new ArgumentNullException(); //Throw a better exception than this, please
             return JsonConvert.DeserializeObject<T>(serializedObject.ToString());
         }
 
-        public List<T> GetMultiple<T>(List<int> ids)
+        public List<T> GetMultiple<T>(List<Guid> ids)
         {
             var database = _redisConnection.GetDatabase();
-            var serializedItems = database.StringGet(ids.Select(MakeKey).Select(dummy => (RedisKey) dummy).ToArray(), CommandFlags.None);
-            return serializedItems.Select(item => JsonConvert.DeserializeObject<T>(item.ToString())).ToList();
+            List<RedisKey> keys = new List<RedisKey>();
+            foreach (Guid id in ids)
+            {
+                keys.Add(MakeKey(id));
+            }
+            var serializedItems = database.StringGet(keys.ToArray(), CommandFlags.None);
+            List<T> items = new List<T>();
+            foreach (var item in serializedItems)
+            {
+                items.Add(JsonConvert.DeserializeObject<T>(item.ToString()));
+            }
+            return items;
         }
 
-        public bool Exists(int id)
+        public bool Exists(Guid id)
         {
             return Exists(id.ToString());
         }
@@ -50,7 +53,7 @@ namespace AspNetCoreCqrsRedis.API.Query.Repository
             return !serializedObject.IsNullOrEmpty;
         }
 
-        public void Save(int id, object entity)
+        public void Save(Guid id, object entity)
         {
             Save(id.ToString(), entity);
         }
@@ -62,18 +65,19 @@ namespace AspNetCoreCqrsRedis.API.Query.Repository
             database.StringSet(MakeKey(key), JsonConvert.SerializeObject(entity));
         }
 
-        public string MakeKey(int id)
+        private string MakeKey(Guid id)
         {
             return MakeKey(id.ToString());
         }
 
-        public string MakeKey(string keySuffix)
+        private string MakeKey(string keySuffix)
         {
-            if (!keySuffix.StartsWith(_namespace + ":"))
+            if (!keySuffix.StartsWith("order" + ":"))
             {
-                return _namespace + ":" + keySuffix;
+                return "order" + ":" + keySuffix;
             }
-            else return keySuffix;
+            else return keySuffix; //Key is already suffixed with namespace
         }
+    
     }
 }

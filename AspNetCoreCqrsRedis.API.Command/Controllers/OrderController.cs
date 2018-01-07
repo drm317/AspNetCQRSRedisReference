@@ -1,28 +1,25 @@
-﻿using AspNetCoreCqrsRedis.API.Command.Command;
+﻿using System;
 using AspNetCoreCqrsRedis.API.Command.Request;
-using AutoMapper;
+using AspNetCoreCqrsRedis.Model.WriteModel.Commands;
 using CQRSlite.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreCqrsRedis.API.Command.Controllers
 {
-    [Route("api/[controller]")]
     public class OrderController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly ICommandSender _commandSender;
 
-        public OrderController(ICommandSender commandSender, IMapper mapper)
+        public OrderController(ICommandSender commandSender)
         {
             _commandSender = commandSender;
-            _mapper = mapper;
         }
         
-        [HttpPost("create")]
-        public IActionResult GetByOrderId(CreateOrderRequest request)
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateOrderRequest request)
         {
-            var command = _mapper.Map<CreateOrderCommand>(request);
-            _commandSender.Send(command);
+            var createOrderCommand = new CreateOrder(Guid.NewGuid(), request.Description);
+            _commandSender.Send(createOrderCommand);
 
             return Ok();
         }

@@ -10,8 +10,12 @@
     <PackageReference Include="CqrsLite" Version="0.18.3" />
     <PackageReference Include="FluentValidation" Version="7.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Scrutor" Version="2.1.2" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetCoreCqrsRedis.Model\AspNetCoreCqrsRedis.Model.csproj" />
   </ItemGroup>
 </Project>

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreCqrsRedis.API.Que
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreCqrsRedis.API.Command", "AspNetCoreCqrsRedis.API.Command\AspNetCoreCqrsRedis.API.Command.csproj", "{5626B99F-325C-4849-8BD8-4DCA3663DA94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreCqrsRedis.Model", "AspNetCoreCqrsRedis.Model\AspNetCoreCqrsRedis.Model.csproj", "{DA2359A3-90CF-46D3-82D4-6DD72F7AD434}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5626B99F-325C-4849-8BD8-4DCA3663DA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5626B99F-325C-4849-8BD8-4DCA3663DA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5626B99F-325C-4849-8BD8-4DCA3663DA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA2359A3-90CF-46D3-82D4-6DD72F7AD434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA2359A3-90CF-46D3-82D4-6DD72F7AD434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA2359A3-90CF-46D3-82D4-6DD72F7AD434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA2359A3-90CF-46D3-82D4-6DD72F7AD434}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

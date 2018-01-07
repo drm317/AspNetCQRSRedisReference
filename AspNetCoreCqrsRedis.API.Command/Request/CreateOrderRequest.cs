@@ -2,8 +2,7 @@
 {
     public class CreateOrderRequest
     {
-        public string orderId;
-        public string description;
+        public string Description { get; set; }
     }
 
 }

@@ -1,22 +1,22 @@
-﻿using AspNetCoreCqrsRedis.API.Query.Repository;
+﻿using System;
+using AspNetCoreCqrsRedis.Model.ReadModel.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreCqrsRedis.API.Query.Controllers
 {
-    [Route("api/[controller]")]
     public class OrderController : Controller
     {
-        private readonly IOrderRespository _orderRespository;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrderController(IOrderRespository orderRespository)
+        public OrderController(IOrderRepository orderRepository)
         {
-            _orderRespository = orderRespository;
+            _orderRepository = orderRepository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetByOrderId(int orderId)
+        [HttpGet]
+        public IActionResult GetByOrderId(string orderId)
         {
-            var order = _orderRespository.GetByID(orderId);
+            var order = _orderRepository.GetByID(Guid.Parse(orderId));
             if (order == null)
             {
                 return BadRequest("No order with Id " + orderId.ToString());
@@ -25,10 +25,10 @@ namespace AspNetCoreCqrsRedis.API.Query.Controllers
             return Ok();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public IActionResult GetAll()
         {
-            var orders = _orderRespository.GetAll();
+            var orders = _orderRepository.GetAll();
             return Ok(orders);
         }
     }
