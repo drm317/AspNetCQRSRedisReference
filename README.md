@@ -40,7 +40,7 @@ There are three services in this example
 
 The CQRSlite framework is used to provide a basic CQRS infrastructure. Order creation events are written to an in-memory event store by the command service. An event handler publishes these events and an entry is cached in the Redis read data store for the query service.
 
-* Start the Redis service. It can be installed as a service on Windows and `*Nix systems or started manually.
+* Start the Redis service. It can be installed as a service on Windows and Nix systems or started manually from the command line.
 
 * Start the Command and Query services in your IDE.
 
