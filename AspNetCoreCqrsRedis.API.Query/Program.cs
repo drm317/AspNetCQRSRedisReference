@@ -20,6 +20,7 @@ namespace AspNetCoreCqrsRedis.API.Query
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:4999/")
                 .Build();
     }
 }
