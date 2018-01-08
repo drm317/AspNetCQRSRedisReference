@@ -42,12 +42,10 @@ The CQRSlite framework is used to provide a basic CQRS infrastructure. Order cre
 
 1. Start the Redis service. It can be installed as a service on Windows and `*Nix systems or started manually.
 
-```bash
-redis-server /usr/local/etc/redis.conf
-```
-
 Redis will report that the server is initallised and that it is ready to start accepting connections.
 
 2. Start the Command and Query services in your IDE.
 
-The Query service is configured to run on port 4999. The Command service runs on port 5000.
+The Query service is configured to run on port 4999. 
+
+The Command service runs on port 5000.
