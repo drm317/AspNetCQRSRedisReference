@@ -50,24 +50,7 @@ The Query service is configured to run on port 4999. The Command service runs on
 
 ### 3. Run the Tests
 
-The unit test project includes a single xUnit test. This covers the order creation scenario and verifies that an event is created and handled.
+The AspNetCoreCqrsRedis.Test test project includes unit and integration tests. 
 
-```csharp
-        [Then]
-        public void Should_create_one_event()
-        {
-            Assert.Equal(1, PublishedEvents.Count);
-        }
-        
-        [Then]
-        public void Should_create_correct_event()
-        {
-            Assert.IsType<OrderCreatedEvent>(PublishedEvents.First());
-        }
+The unit test uses fake implementations of the key CQRSlite framework classes. It covers the order creation scenario and verifies that an OrderCreatedEvent is correctly handled.
 
-        [Then]
-        public void Should_save_order_description()
-        {
-            Assert.Equal("an_order_description", ((OrderCreatedEvent)PublishedEvents.First()).Description);
-        }
-```
