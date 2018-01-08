@@ -4,12 +4,20 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Http.Extensions" Version="1.0.0" />
     <PackageReference Include="CqrsLite" Version="0.18.3" />
+    <PackageReference Include="HttpClientExtensions" Version="1.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AspNetCoreCqrsRedis.API.Command\AspNetCoreCqrsRedis.API.Command.csproj">
+      <Project>{5626B99F-325C-4849-8BD8-4DCA3663DA94}</Project>
+      <Name>AspNetCoreCqrsRedis.API.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspNetCoreCqrsRedis.API.Query\AspNetCoreCqrsRedis.API.Query.csproj" />
     <ProjectReference Include="..\AspNetCoreCqrsRedis.Model\AspNetCoreCqrsRedis.Model.csproj" />
   </ItemGroup>
 </Project>
