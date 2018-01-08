@@ -46,6 +46,28 @@ Redis will report that the server is initallised and that it is ready to start a
 
 * Start the Command and Query services in your IDE.
 
-The Query service is configured to run on port 4999. 
+The Query service is configured to run on port 4999. The Command service runs on port 5000.
 
-The Command service runs on port 5000.
+### 3. Run the Tests
+
+The unit test project includes a single xUnit test. This covers the order creation scenario and verifies that an event is created and handled.
+
+```csharp
+        [Then]
+        public void Should_create_one_event()
+        {
+            Assert.Equal(1, PublishedEvents.Count);
+        }
+        
+        [Then]
+        public void Should_create_correct_event()
+        {
+            Assert.IsType<OrderCreatedEvent>(PublishedEvents.First());
+        }
+
+        [Then]
+        public void Should_save_order_description()
+        {
+            Assert.Equal("an_order_description", ((OrderCreatedEvent)PublishedEvents.First()).Description);
+        }
+```
