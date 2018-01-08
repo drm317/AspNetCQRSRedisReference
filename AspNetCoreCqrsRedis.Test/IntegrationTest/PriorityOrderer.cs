@@ -4,7 +4,7 @@ using System.Linq;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace AspNetCoreCqrsRedis.Test
+namespace AspNetCoreCqrsRedis.Test.IntegrationTest
 {
     public class PriorityOrderer : ITestCaseOrderer
     {

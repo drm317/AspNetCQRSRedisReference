@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace AspNetCoreCqrsRedis.Test
+namespace AspNetCoreCqrsRedis.Test.IntegrationTest
 {
     [TestCaseOrderer("AspNetCoreCqrsRedis.Test.PriorityOrderer", "AspNetCoreCqrsRedis.Test")]
     public class EndToEndTest
@@ -48,7 +48,7 @@ namespace AspNetCoreCqrsRedis.Test
         }
         
         [Fact, TestPriority(2)]
-        public void TestGetTheOrder()
+        public void TestGetTheOrders()
         {
             
             // Act
