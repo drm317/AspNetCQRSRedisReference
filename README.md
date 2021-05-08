@@ -1,13 +1,13 @@
-# CQRS and Event Sourcing with ASP.Net Core 2.0 and Redis
+# CQRS and Event Sourcing with ASP.Net Core 3.1 and Redis
 
-This is a simple CQRS and Event Sourcing application using ASP.Net Core 2.0, CQRSlite and Redis. The following design patterns are used:
+This is a simple CQRS and Event Sourcing application using ASP.Net Core 3.1, CQRSlite and Redis. The following design patterns are used:
 
 * Command Query Responsibility Separation (CQRS).
 * Event Sourcing
 
 The following technologies are used
 
-* ASP.Net Core 2.0
+* ASP.Net Core 3.1
 * CQRSlite
 * Redis
 
