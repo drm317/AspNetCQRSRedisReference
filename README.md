@@ -15,7 +15,7 @@ The following technologies are used
 
 The system consists of two Web API applications and an underlying Redis cache. The following software is required to build and run the code
 
-* .NET Core 2.0 SDK
+* .NET Core 3.1 SDK
 * Redis 4.0.6
 
 ## Running this Example
@@ -42,7 +42,23 @@ The CQRSlite framework is used to provide a basic CQRS infrastructure. Order cre
 
 * Start the Redis service. It can be installed as a service on Windows and Nix systems or started manually from the command line.
 
-* Start the Command and Query services in your IDE.
+```$ redis-server```
+
+* Start the Command service
+
+```
+AspNetCoreCqrsRedis.API.Command
+
+$ dotnet run
+```
+
+and the Query service
+
+```
+AspNetCoreCqrsRedis.API.Query
+
+$ dotnet run
+```
 
 ### 3. Run the Tests
 
@@ -51,4 +67,10 @@ The AspNetCoreCqrsRedis.Test test project includes unit and integration tests.
 * Unit Tests - The WhenOrderCreated.cs unit test uses fake implementations of the key CQRSlite framework classes. It covers the order creation scenario and verifies that an OrderCreatedEvent is correctly handled.
 
 * Integration Tests - The EndToEndTest.cs integration test creates an order via the Command service. The event store is updated and an event is published to the query read data store. The Query service returns the cached order from the read data store.
+
+```
+AspNetCoreCqrsRedis.Test
+
+$ dotnet test
+```
 
