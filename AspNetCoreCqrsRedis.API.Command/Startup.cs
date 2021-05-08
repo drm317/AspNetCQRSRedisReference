@@ -51,31 +51,31 @@ namespace AspNetCoreCqrsRedis.API.Command
                 .AsSelf()
                 .WithTransientLifetime()
             );
-            
+
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
 
             //Register routes
             var serviceProvider = services.BuildServiceProvider();
             var registrar = new RouteRegistrar(new Provider(serviceProvider));
-            registrar.Register(typeof(OrderCommandHandler));
+            registrar.RegisterHandlers(typeof(OrderCommandHandler));
 
             return serviceProvider;
             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            _ = app.UseMvc(routes =>
+              {
+                  routes.MapRoute(
+                      name: "default",
+                      template: "{controller=Home}/{action=Index}/{id?}");
+              });
         }
         
         

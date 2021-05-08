@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using AspNetCore.Http.Extensions;
 using AspNetCoreCqrsRedis.API.Command.Request;
 using AspNetCoreCqrsRedis.Model.ReadModel.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Xunit;
+using System.Net.Http.Json;
 
 namespace AspNetCoreCqrsRedis.Test.IntegrationTest
 {
